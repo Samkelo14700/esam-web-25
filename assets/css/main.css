@@ -1949,3 +1949,14 @@ button[type="submit"]:hover {
     }
 }
 
+/* ===== reCAPTCHA Fixes ===== */
+.g-recaptcha {
+  margin: 20px 0;
+  display: block !important; /* Force display */
+  min-height: 78px; /* Prevent layout shift */
+}
+
+/* Fix invisible recaptcha bug */
+.grecaptcha-badge { 
+  visibility: visible !important; 
+}

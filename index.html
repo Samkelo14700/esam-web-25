@@ -260,10 +260,13 @@
                 <div class="spotlight-holder">
                     <form action="https://formspree.io/f/xjkrbopr" method="POST">
                         <input type="hidden" name="_subject" value="Student Spotlight Submission">
+                        <input type="hidden" name="_next" value="https://samkelo14700.github.io/success.html">
+                        <input type="text" name="_gotcha" style="display:none">
                         <div class="form-group">
                             <input type="text" name="name" placeholder="Your Name" required>
                             <input type="email" name="email" placeholder="Email" required>
                             <textarea name="story" placeholder="Your story (max 200 words)" required></textarea>
+                            <div class="g-recaptcha" data-sitekey="6LdBnFErAAAAAHrPyOMJF8o7cTeRWBtyqTLXfnnj"></div>
                             <button type="submit">Submit</button>
                         </div>
                     </form>
@@ -327,6 +330,9 @@
             <form class="contact-form" action="https://formspree.io/f/mldbqlon" method="POST">
                 <input type="hidden" name="_subject" value="ESAM Contact Form Submission">
                 <!-- Contact form fields here -->
+                  <!-- Add security fields -->
+                <input type="hidden" name="_next" value="https://samkelo14700.github.io/success.html">
+                <input type="text" name="_gotcha" style="display:none">
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required>
@@ -341,7 +347,7 @@
                     <label for="message">Message:</label>
                     <textarea id="message" name="message" rows="5" required></textarea>
                 </div>
-
+                <div class="g-recaptcha" data-sitekey="6LdBnFErAAAAAHrPyOMJF8o7cTeRWBtyqTLXfnnj"></div>
                 <button type="submit" class="cta-button"> Send</button>
             </form>
         </section>
@@ -381,7 +387,9 @@
                     action="https://formspree.io/f/mvgrpqvo" 
                     method="POST"
                     enctype="multipart/form-data">
-                  <input type="hidden" name="_subject" value="Alumni Submission">
+                    <input type="hidden" name="_subject" value="Alumni Submission">
+                    <input type="hidden" name="_next" value="https://samkelo14700.github.io/success.html">
+                    <input type="text" name="_gotcha" style="display:none">
                     <div class="form-group">
                         <label>Full Name *</label>
                         <input type="text" name="name" required>
@@ -406,7 +414,7 @@
                         <label>Your Success Story *</label>
                         <textarea name="testimonial" rows="6" required placeholder="Share your journey after graduation (max 300 words)"></textarea>
                     </div>
-            
+                    <div class="g-recaptcha" data-sitekey="6LdBnFErAAAAAHrPyOMJF8o7cTeRWBtyqTLXfnnj"></div>
                     <button type="submit" class="cta-button">Share My Journey</button>
                 </form>
             </div>
@@ -611,7 +619,6 @@
     <!-- Scripts -->
     <script src="assets/js/lightbox.min.js"></script>
     <script src="assets/js/app.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js"></script>
     <script>
         // Modal toggle function
         function toggleForm(formType) {
@@ -627,6 +634,6 @@
             }
         }
     </script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
-</html>   
- 
+</html>

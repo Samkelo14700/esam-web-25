@@ -346,6 +346,16 @@ const ESAM = (() => {
                 if (!valid) e.preventDefault();
             });
         }
+        // Add reCAPTCHA validation
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                if (this.querySelector('.g-recaptcha') && 
+                    !grecaptcha.getResponse()) {
+                    e.preventDefault();
+                    alert('Please complete the reCAPTCHA');
+                }
+            });
+        });
         
         // Spotlight form validation
         const spotlightForm = document.querySelector('.spotlight-form form');
