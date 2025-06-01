@@ -107,6 +107,15 @@ header {
     align-items: center;
 }
 
+#authLinks, #userLinks {
+    display: flex;
+    gap: 1rem;
+}
+
+#userLinks {
+    align-items: center;
+}
+
 .auth-link {
     color: var(--accent-gold) !important;
     text-decoration: none;
@@ -690,7 +699,7 @@ h3 {
     overflow: hidden;
     position: relative;
     display: block;
-    height: 200px;
+    height: 350px;
     transition: transform 0.3s;
 }
 
@@ -838,7 +847,7 @@ h3 {
 /* ===== Map Section ===== */
 .map-section {
     padding: 4rem 1rem;
-    background: var(--eswatini-red) !important;
+    background: linear-gradient(180deg, var(--eswatini-red) 10%, var(--eswatini-yellow) 90%);
 }
 
 .map-container {
@@ -955,7 +964,7 @@ h3 {
 
 /* ===== Blog Section - Solid Red Background ===== */
 .blog {
-    background: var(--solid-red);
+    background: var(--eswatini-red);
     padding: 4rem 1rem;
     color: white;
     position: relative;
@@ -969,7 +978,7 @@ h3 {
     left: 0;
     width: 100%;
     height: 20px;
-    background: linear-gradient(to bottom, var(--eswatini-yellow), transparent);
+    background: linear-gradient(to bottom, var(--accent-red), transparent);
 }
 
 .blog h2 {
@@ -1216,7 +1225,7 @@ h3 {
 /* ===== Contact Section ===== */
 
 .contact {
-    background: var(--gradient-red-yellow);
+    background: linear-gradient(180deg, var(--eswatini-yellow) 10%, var(--eswatini-blue) 90%);
 }
 
 .contact-form {
@@ -1276,7 +1285,7 @@ button[type="submit"]:hover {
 
 /* ===== Alumni Section ===== */
 .alumni {
-    background: linear-gradient(180deg, var(--eswatini-yellow) 0%, var(--eswatini-blue) 40%);
+    background: var(--dark-bg);
     
 }
 
@@ -1475,16 +1484,16 @@ button[type="submit"]:hover {
 
 /* ===== Partners Section ===== */
 .partners {
-    background: var(--eswatini-yellow);
+    background: linear-gradient(180deg, var(--eswatini-blue) 10%, var(--dark-bg) 90%);
     padding: 4rem 1rem;
 }
 
 .partner-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 3rem;
-    max-width: var(--container-width);
-    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
+    gap: 2rem;
+    max-width: 800px;
+    margin: 8rem auto;
     align-items: center;
 }
 
@@ -1509,9 +1518,10 @@ button[type="submit"]:hover {
 .partner-grid img {
     width: 100%;
     height: auto;
-    max-width: 200px;
-    filter: grayscale(60%);
+    max-width: 75px;
+    filter: grayscale(90%);
     transition: filter 0.5s;
+    position: absolute;
 }
 
 .partner-grid img:hover {
@@ -1616,7 +1626,7 @@ button[type="submit"]:hover {
     right: 15px;
     font-size: 1.5rem;
     cursor: pointer;
-    color: #666;
+    color: hsl(233, 100%, 50%);
     transition: color 0.3s;
 }
 
@@ -1727,9 +1737,34 @@ button[type="submit"]:hover {
     color: var(--primary-blue);
 }
 
+/* Add to main.css */
+/* ===== Signup Modal Styles ===== */
+.signup-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    overflow: auto;
+    padding: 20px;
+}
+
+.modal-content {
+    background: rgb(132, 164, 252);
+    max-height: 90vh;
+    max-width: 800px;
+    margin: 5% auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
 /* Add this new class for scrollable content */
 .modal-scrollable {
-    max-height: 60vh; /* Adjust based on your needs */
+    max-height: 30vh;
     overflow-y: auto;
     padding-right: 10px; /* Prevent content from hiding behind scrollbar */
 }
@@ -1754,10 +1789,11 @@ button[type="submit"]:hover {
 }
 
 .modal-header {
-    background: var(--primary-blue);
+    background: var(#235dff);
     padding: 1.5rem;
     text-align: center;
     position: relative;
+    color: white;
 }
 
 .flag-bars {
@@ -1776,17 +1812,6 @@ button[type="submit"]:hover {
 .bar-gold { background: var(--accent-gold); }
 .bar-red { background: var(--accent-red); }
 .bar-black { background: var(--eswatini-black); }
-
-.modal-header h2 {
-    color: white;
-    margin: 0;
-    font-size: 1.8rem;
-}
-
-.modal-header p {
-    color: rgba(255, 255, 255, 0.85);
-    margin-top: 5px;
-}
 
 .modal-body {
     padding: 2rem;
@@ -2093,204 +2118,18 @@ button[type="submit"]:hover {
     color: var(--accent);
 }
 
-/* ===== AUTHENTICATION STYLES ===== */
-.navbar-auth {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
-
-#authLinks, #userLinks {
-    display: flex;
-    gap: 1rem;
-}
-
-#userLinks {
-    align-items: center;
-}
-
+/* Logout Button */
 .logout-btn {
     background: var(--accent-red);
     color: white;
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 4px;
-    cursor: pointer;
     font-weight: 600;
+    cursor: pointer;
     transition: background 0.3s;
 }
 
 .logout-btn:hover {
     background: #a50e1e;
-}
-
-/* Modal Styles */
-.signup-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 2000;
-    overflow: auto;
-    padding: 20px;
-}
-
-.modal-content {
-    background: white;
-    max-height: 90vh;
-    max-width: 800px;
-    margin: 5% auto;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.modal-header {
-    background: var(--primary-blue);
-    padding: 1.5rem;
-    text-align: center;
-    position: relative;
-    color: white;
-}
-
-.flag-bars {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    margin-bottom: 15px;
-}
-
-.flag-bar {
-    width: 6px;
-    height: 35px;
-}
-
-.bar-blue { background: var(--primary-blue); }
-.bar-gold { background: var(--accent-gold); }
-.bar-red { background: var(--accent-red); }
-.bar-black { background: var(--eswatini-black); }
-
-.modal-body {
-    padding: 2rem;
-}
-
-.error-message {
-    background: #ffebee;
-    color: #b71c1c;
-    padding: 12px;
-    border-radius: 4px;
-    margin-bottom: 20px;
-    font-size: 0.9rem;
-    display: none;
-}
-
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: var(--primary-blue);
-}
-
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #ddd;
-    border-radius: 6px;
-    font-size: 1rem;
-    transition: all 0.3s;
-}
-
-.form-group input:focus,
-.form-group select:focus {
-    border-color: var(--primary-blue);
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 51, 160, 0.1);
-}
-
-.terms-group {
-    display: flex;
-    align-items: flex-start;
-    margin: 2rem 0;
-}
-
-.terms-group input {
-    margin-top: 5px;
-}
-
-.terms-group label {
-    margin-left: 10px;
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
-
-.terms-group a {
-    color: var(--primary-blue);
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.terms-group a:hover {
-    text-decoration: underline;
-}
-
-.submit-btn {
-    width: 100%;
-    padding: 14px;
-    background: var(--primary-blue);
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.submit-btn:hover {
-    background: var(--dark-bg);
-}
-
-.submit-btn.loading {
-    opacity: 0.7;
-    cursor: not-allowed;
-}
-
-.login-link {
-    text-align: center;
-    margin-top: 1.5rem;
-    font-size: 1rem;
-}
-
-.login-link a {
-    color: var(--primary-blue);
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.login-link a:hover {
-    text-decoration: underline;
-}
-
-.close-modal {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 1.5rem;
-    color: white;
-    cursor: pointer;
-    background: none;
-    border: none;
 }

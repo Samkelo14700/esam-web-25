@@ -6,7 +6,6 @@
     <meta name="description" content="Official website of Eswatini Students Association in Morocco - Connecting students through cultural exchange and academic support">
     <title>Eswatini Students in Morocco</title>
     <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/lightbox.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -22,7 +21,7 @@
         </div>
     </header>
 
-    <!-- Main Navigation - Buttons on Left -->
+    <!-- Main Navigation -->
     <nav class="navbar" aria-label="Main navigation">
         <div class="navbar-brand">
             <a href="#home" class="nav-logo">ESAM</a>
@@ -34,22 +33,22 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#events">Events</a></li>
-             <li><a href="#membership">Membership</a></li><!-- Added link -->
+            <li><a href="#membership">Membership</a></li>
             <li><a href="#resources">Resources</a></li>
             <li><a href="#gallery">Gallery</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <!-- Auth buttons on left -->
+        <!-- Auth buttons -->
         <div class="navbar-auth">
             <div id="authLinks">
-                <a href="#signup" class="auth-link" onclick="toggleAuthModal('signup')">
+                <a href="#signup" class="auth-link" onclick="toggleForm('signup')">
                     <i class="fas fa-user-plus"></i> Sign Up
                 </a>
-                <a href="#login" class="auth-link" onclick="toggleAuthModal('login')">
+                <a href="#login" class="auth-link" onclick="toggleForm('login')">
                     <i class="fas fa-lock"></i> Login
                 </a>
             </div>
-            <div id="userLinks" class="user-greeting" style="display: none;">
+            <div id="userLinks" style="display: none;">
                 <span>Welcome, <span class="user-name" id="navbarUsername"></span></span>
                 <a href="dashboard.html" class="auth-link">
                     <i class="fas fa-user"></i> Dashboard
@@ -74,16 +73,14 @@
         <section class="about" id="about">
             <h2>Our Story</h2>
             <div class="timeline">
-                <!-- Timeline items here -->
-                 <div class="timeline-item">
+                <div class="timeline-item">
                     <div class="timeline-year">❤</div>
                     <div class="timeline-content">
                         <h3>Where It All Began</h3>
                         <p>After the king of Eswatini</p>
                     </div>
                 </div>
-                <!--Add More Timeline items-->
-                 <div class="timeline-item">
+                <div class="timeline-item">
                     <div class="timeline-year">🧡</div>
                     <div class="timeline-content">
                         <h3>Our Vision</h3>
@@ -92,7 +89,6 @@
                 </div>
             </div>
             <div class="mission-grid">
-                <!-- Mission cards here -->
                 <div class="mission-card">
                     <i class="fas fa-hand-holding-heart"></i>
                     <h3>Our Mission</h3>
@@ -107,21 +103,19 @@
                         <li>Academic Excellence</li>
                         <li>Cultural Pride</li>
                         <li>Intercultural Exchange</li>
-                   </ul>
+                    </ul>
                 </div>
             </div>
             <div class="leadership">
                 <h3>Leadership Team</h3>
                 <div class="leadership-grid">
-                    <!-- Leadership cards here -->
-                     <div class="leader-card">
+                    <div class="leader-card">
                         <img src="assets/images/leadership/president.jpg" alt="President">
                         <h4>Nomsa Dlamini</h4>
                         <p>President</p>
                         <blockquote>"We bridge Eswatini and Morocco through education"</blockquote>
                     </div>
-                    <!-- Add more leaders -->
-                     <div class="leader-card">
+                    <div class="leader-card">
                         <img src="assets/images/leadership/vice-president.jpg" alt="Vice President">
                         <h4>Thando Nkosi</h4>
                         <p>Vice President</p>
@@ -137,23 +131,22 @@
                         <img src="assets/images/leadership/election.jpg" alt="Electoral Commissioner">
                         <h4>Samuel Smith</h4>
                         <p>Electoral Commissioner</p>
-                       <blockquote>"Ensuring fair representation for all members"</blockquote>
+                        <blockquote>"Ensuring fair representation for all members"</blockquote>
                     </div>
                     <div class="leader-card">
                         <img src="assets/images/leadership/treasurer.jpg" alt="Electoral Commissioner">
                         <h4>Sibusiso Vilakazi</h4>
                         <p>Treasurer</p>
-                       <blockquote>"Making sure about all funds are used accordingly"</blockquote>
+                        <blockquote>"Making sure about all funds are used accordingly"</blockquote>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Events Section --><!--600*400px-->
+        <!-- Events Section -->
         <section class="events" id="events">
             <h2>Upcoming Events</h2>
             <div class="event-grid">
-                <!-- Event cards here -->
                 <div class="event-card">
                     <img src="assets/images/events/event1.jpg" alt="ESAM Cultural Night Event">
                     <h3>Cultural Night</h3>
@@ -161,7 +154,6 @@
                     <button class="rsvp-btn">RSVP</button>
                 </div>
         
-                <!-- Event Card 2 -->
                 <div class="event-card">
                     <img src="assets/images/events/event2.jpg" alt="ESAM Study Workshop">
                     <h3>Study Workshop</h3>
@@ -175,7 +167,6 @@
         <section class="membership" id="membership">
             <h2>Join Our Community</h2>
             <div class="membership-grid">
-                <!-- Membership content here -->
                 <div class="membership-card">
                     <i class="fas fa-users-crown"></i>
                     <h3>Membership Benefits</h3>
@@ -184,6 +175,8 @@
                         <li>Academic resources</li>
                         <li>Leadership opportunities</li>
                         <li>Mentorship programs</li>
+                        <li>Cultural exchange activities</li>
+                        <li>Career development workshops</li>
                     </ul>
                     <button class="cta-button" onclick="toggleForm('signup')">Join Now</button>
                 </div>
@@ -194,7 +187,6 @@
         <section class="resources" id="resources">
             <h2>Student Resources</h2>
             <div class="resource-grid">
-                <!-- Resource cards here -->
                 <div class="resource-card">
                     <i class="fas fa-book-open"></i>
                     <h3>Study Materials</h3>
@@ -206,8 +198,7 @@
                     <h3>Mentorship Program</h3>
                     <p>Connect with senior students</p>
                     <a href="#mentorship" class="resource-link">Apply Now →</a>
-                </div>       
-                <!-- Add more resource cards -->
+                </div>        
             </div>
         </section>
 
@@ -215,20 +206,17 @@
         <section class="gallery" id="gallery">
             <h2>Photo Gallery</h2>
             <div class="gallery-grid">
-                <!-- Gallery images here -->
                 <a href="assets/images/gallery/large-1.jpg" 
                    data-lightbox="esam-events" 
                    data-title="ESAM Cultural Night 2024">
                    <img src="assets/images/gallery/thumb-1.jpg" alt="Cultural dance performance">
                 </a>
 
-                <!-- Image Set Example -->
-                 <a href="assets/images/gallery/large-2.jpg" 
+                <a href="assets/images/gallery/large-2.jpg" 
                     data-lightbox="esam-events"
                     data-title="Study Workshop">
                     <img src="assets/images/gallery/thumb-2.jpg" alt="Study session">
                 </a>
-                <!-- Add more images as needed -->
             </div>
         </section>
 
@@ -236,7 +224,6 @@
         <section class="testimonials" id="testimonials">
             <h2>Student Experiences</h2>
             <div class="testimonial-carousel">
-                <!-- Testimonial items here -->
                 <div class="testimonial">
                     <div class="student-photo">
                         <img src="assets/images/students/student1.jpg" alt="Lihle Mamba">
@@ -248,7 +235,6 @@
                     </blockquote>
                 </div>
         
-                <!-- Testimonial 2 -->
                 <div class="testimonial">
                     <div class="student-video">
                         <video controls poster="assets/videos/thumbnails/student2.jpg">
@@ -262,6 +248,7 @@
                 </div>
             </div>
         </section>
+        
         <!-- Student Spotlight Submission -->
         <section class="spotlight">
             <h2>Share Your Story</h2>
@@ -288,13 +275,12 @@
         <section class="blog" id="blog">
             <h2>Cultural Exchange</h2>
             <div class="blog-grid">
-                <!-- Blog posts here -->
                 <article class="blog-post">
                     <img src="assets/images/blog/morocco-culture.jpg" alt="Eid celebration comparison">
                     <div class="blog-content">
-                        <h3>Celebrating Eid in Morocco</h3>
-                        <p class="author">By Fatima Al-Fihri (ESAM Member)</p>
-                        <p>Comparing traditions during the holy month...</p>
+                        <h3>Celebrating Culture Day in Morocco</h3>
+                        <p class="author">By  (ESAM Member)</p>
+                        <p>Comparing traditions during the international Culture Day...</p>
                         <a href="#" class="read-more">Read More →</a>
                     </div>
                 </article>
@@ -339,8 +325,6 @@
             <h2>Get in Touch</h2>
             <form class="contact-form" action="https://formspree.io/f/mldbqlon" method="POST">
                 <input type="hidden" name="_subject" value="ESAM Contact Form Submission">
-                <!-- Contact form fields here -->
-                  <!-- Add security fields -->
                 <input type="hidden" name="_next" value="https://samkelo14700.github.io/success.html">
                 <input type="text" name="_gotcha" style="display:none">
                 <div class="form-group">
@@ -366,14 +350,12 @@
         <section class="partners" id="partners">
             <h2>Our Partners</h2>
             <div class="partner-grid">
-                <!-- Partner logos here -->
                 <a href="https://www.amci.ma" target="_blank">
                     <img src="assets/images/partners/logo_amci2.png" alt="Morocco University">
                 </a>
                 <a href="https://diplomatie" target="_blank">
                     <img src="assets/images/partners/logo-1.gif" alt="Eswatini Government">
                 </a>
-                <!-- Add more partners -->
             </div>
         </section>
 
@@ -386,9 +368,7 @@
             </div>
             <div class="alumni-profiles">
                 <!-- Alumni profiles loaded via JavaScript -->
-
             </div>
-                <!-- Add this form for alumni submissions -->
             <div class="alumni-form">
                 <h3>Share Your Alumni Journey</h3>
                 <p>Are you an ESAM alumnus? Share your success story to inspire current students!</p>
@@ -434,7 +414,6 @@
     <!-- Footer Section -->
     <footer class="site-footer">
         <div class="footer-content">
-            <!-- Footer columns here -->
             <div class="footer-section">
                 <img src="assets/images/logos/esam-logo.png" alt="ESAM Logo" class="footer-logo">
                 <p>Connecting Eswatini Students in Morocco</p>
@@ -466,8 +445,8 @@
         </div>
     </footer>
 
-    <!-- Membership Modal -->
-    <div id="signupModal" class="modal">
+    <!-- Membership Signup Modal -->
+    <div id="signupModal" class="signup-modal">
         <div class="modal-content">
             <div class="modal-header">
                 <button class="close-modal" onclick="toggleForm('signup')">&times;</button>
@@ -483,7 +462,7 @@
             
             <div class="modal-body">
                 <div id="errorMessage" class="error-message"></div>
-                <div class="modal-body modal-scrollable">
+                <div class="modal-scrollable">
                     <form id="signupForm">
                         <div class="form-grid">
                             <div class="form-group">
@@ -518,12 +497,18 @@
                             <label for="university">University in Morocco</label>
                             <select id="university" name="university" required>
                                 <option value="">Select your university</option>
-                                <option value="Mohammed V University, Rabat">Mohammed V University, Rabat</option>
-                                <option value="University Hassan II, Casablanca">University Hassan II, Casablanca</option>
-                                <option value="Cadi Ayyad University, Marrakech">Cadi Ayyad University, Marrakech</option>
-                                <option value="Ibn Tofail University, Kenitra">Ibn Tofail University, Kenitra</option>
-                                <option value="Al Akhawayn University, Ifrane">Al Akhawayn University, Ifrane</option>
                                 <option value="Abdelmalek Essaâdi University, Tetouan">Abdelmalek Essaâdi University, Tetouan</option>
+                                <option value="Al Akhawayn University, Ifrane">Al Akhawayn University, Ifrane</option>
+                                <option value="Cadi Ayyad University, Marrakech">Cadi Ayyad University, Marrakech</option>
+                                <option value="University Hassan II, Casablanca">University Hassan II, Casablanca</option>
+                                <option value="University Hassan II, Mohammedia">University Hassan II, Mohammedia</option>
+                                <option value="Ibn Tofail University, Kenitra">Ibn Tofail University, Kenitra</option>
+                                <option value="Ibn Zohr University, Agadir">Ibn Zohr University, Agadir</option>
+                                <option value="Karaouiyine University, Fez">Karaouiyine University, Fez</option>
+                                <option value="Mohammed V University, Rabat">Mohammed V University, Rabat</option>
+                                <option value="Moulay Ismail University, Meknes">Moulay Ismail University, Meknes</option>
+                                <option value="Mohammed I University, Oujda">Mohammed I University, Oujda</option>
+                                <option value="Sidi Mohammed Ben Abdallah University, Fez">Sidi Mohammed Ben Abdallah University, Fez</option>
                                 <option value="Other">Other</option>
                             </select>
                         </div>
@@ -533,14 +518,16 @@
                                 <label for="fieldOfStudy">Field of Study</label>
                                 <select id="fieldOfStudy" name="fieldOfStudy" required>
                                     <option value="">Select your field</option>
-                                    <option value="Business & Economics">Business & Economics</option>
-                                    <option value="Engineering & Technology">Engineering & Technology</option>
-                                    <option value="Medicine & Health Sciences">Medicine & Health Sciences</option>
-                                    <option value="Computer Science & IT">Computer Science & IT</option>
-                                    <option value="Social Sciences">Social Sciences</option>
+                                    <option value="Architecture & Urbanization">Architecture & Urbanization</option>
                                     <option value="Arts & Humanities">Arts & Humanities</option>
+                                    <option value="Business & Economics">Business & Economics</option>
+                                    <option value="Computer Science & IT">Computer Science & IT</option>
+                                    <option value="Engineering & Technology">Engineering & Technology</option>
                                     <option value="Law">Law</option>
+                                    <option value="Literature">Literature</option>
+                                    <option value="Medicine & Health Sciences">Medicine & Health Sciences</option>
                                     <option value="Natural Sciences">Natural Sciences</option>
+                                    <option value="Social Sciences">Social Sciences</option>
                                     <option value="Other">Other</option>
                                 </select>
                             </div>
@@ -580,12 +567,12 @@
         </div>
     </div>
 
-    <!-- Login Modal - Added -->
+    <!-- Login Modal -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="toggleForm('login')">&times;</span>
             <h3>Member Login</h3>
-            <form id="form-group">
+            <form id="loginForm">
                 <div class="form-group">
                     <label>Email:</label>
                     <input type="email" name="email" required>
