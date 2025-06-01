@@ -41,12 +41,18 @@
         </ul>
         <!-- Auth buttons on left -->
         <div class="navbar-auth">
-            <a href="#signup" class="auth-link" onclick="toggleForm('signup')">
-                <i class="fas fa-user-plus"></i> Sign Up
-            </a>
-            <a href="#login" class="auth-link" onclick="toggleForm('login')">
-                <i class="fas fa-lock"></i> Login
-            </a>
+            <div id="authLinks">
+                <a href="#signup" class="auth-link" onclick="toggleAuthModal('signup')">
+                    <i class="fas fa-user-plus"></i> Sign Up
+                </a>
+                <a href="#login" class="auth-link" onclick="toggleAuthModal('login')">
+                    <i class="fas fa-lock"></i> Login
+                </a>
+            </div>
+            <div id="userLinks" class="user-greeting" style="display: none;">
+                <span>Welcome, <span class="user-name" id="navbarUsername"></span></span>
+                <button class="logout-btn" id="logoutBtn">Logout</button>
+            </div>
         </div>
     </nav>
 
@@ -174,6 +180,7 @@
                         <li>Exclusive event access</li>
                         <li>Academic resources</li>
                         <li>Leadership opportunities</li>
+                        <li>Mentorship programs</li>
                     </ul>
                     <button class="cta-button" onclick="toggleForm('signup')">Join Now</button>
                 </div>
