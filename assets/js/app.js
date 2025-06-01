@@ -4,6 +4,71 @@ const ESAM = (() => {
     let carouselInterval;
     let currentModal = null;
     
+    // ===== USER AUTHENTICATION =====
+    const USERS_KEY = 'esam_users';
+    const CURRENT_USER_KEY = 'esam_current_user';
+
+    // Get stored users
+    const getUsers = () => {
+        const users = localStorage.getItem(USERS_KEY);
+        return users ? JSON.parse(users) : [];
+    };
+
+    // Save user to storage
+    const saveUser = (user) => {
+        const users = getUsers();
+        users.push(user);
+        localStorage.setItem(USERS_KEY, JSON.stringify(users));
+    };
+
+    // Authenticate user
+    const authenticateUser = (email, password) => {
+        const users = getUsers();
+        return users.find(user => user.email === email && user.password === password);
+    };
+
+    // Set current user
+    const setCurrentUser = (user) => {
+        localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user));
+    };
+
+    // Get current user
+    const getCurrentUser = () => {
+        const user = localStorage.getItem(CURRENT_USER_KEY);
+        return user ? JSON.parse(user) : null;
+    };
+
+    // Logout user
+    const logoutUser = () => {
+        localStorage.removeItem(CURRENT_USER_KEY);
+    };
+
+    // Update authentication UI
+    const updateAuthUI = () => {
+        const authLinks = document.getElementById('authLinks');
+        const userLinks = document.getElementById('userLinks');
+        const usernameSpan = document.getElementById('navbarUsername');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const user = getCurrentUser();
+
+        if (user) {
+            if (authLinks) authLinks.style.display = 'none';
+            if (userLinks) userLinks.style.display = 'flex';
+            if (usernameSpan) usernameSpan.textContent = user.name.split(' ')[0]; // First name
+            
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', () => {
+                    logoutUser();
+                    updateAuthUI();
+                    window.location.href = 'index.html';
+                });
+            }
+        } else {
+            if (authLinks) authLinks.style.display = 'flex';
+            if (userLinks) userLinks.style.display = 'none';
+        }
+    };
+
     // ===== MOBILE MENU FUNCTIONALITY =====
     const initMobileMenu = () => {
         const toggleBtn = document.querySelector('.navbar-toggle');
@@ -103,21 +168,27 @@ const ESAM = (() => {
             submitBtn.classList.add('loading');
             submitBtn.disabled = true;
             
-            // Simulate API call
+            // Create user object
+            const user = {
+                id: `ESAM-${Date.now().toString().slice(-5)}`,
+                name: `${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`,
+                email: document.getElementById('email').value,
+                password: password, // Note: In production, hash passwords
+                university: document.getElementById('university').value,
+                fieldOfStudy: document.getElementById('fieldOfStudy').value,
+                yearOfStudy: document.getElementById('yearOfStudy').value,
+                joinDate: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long' }),
+                lastLogin: new Date().toISOString(),
+                membershipLevel: 'Premium'
+            };
+            
+            // Save user and set as current
+            saveUser(user);
+            setCurrentUser(user);
+            updateAuthUI();
+            
+            // Show success message
             setTimeout(() => {
-                // Form data collection
-                const formData = {
-                    firstName: document.getElementById('firstName').value,
-                    lastName: document.getElementById('lastName').value,
-                    email: document.getElementById('email').value,
-                    university: document.getElementById('university').value,
-                    fieldOfStudy: document.getElementById('fieldOfStudy').value,
-                    yearOfStudy: document.getElementById('yearOfStudy').value
-                };
-                
-                console.log('Registration data:', formData);
-                
-                // Show success message
                 alert('Account created successfully! Welcome to ESAM.');
                 
                 // Reset form
@@ -128,7 +199,34 @@ const ESAM = (() => {
                 
                 // Close modal
                 toggleForm('signup');
+                
+                // Redirect to dashboard
+                window.location.href = 'dashboard.html';
             }, 1500);
+        });
+    };
+
+    // ===== LOGIN FORM HANDLING =====
+    const initLoginForm = () => {
+        const loginForm = document.getElementById('loginForm');
+        if (!loginForm) return;
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.email.value;
+            const password = this.password.value;
+
+            const user = authenticateUser(email, password);
+            if (user) {
+                // Update last login
+                user.lastLogin = new Date().toISOString();
+                setCurrentUser(user);
+                updateAuthUI();
+                toggleForm('login');
+                window.location.href = 'dashboard.html';
+            } else {
+                alert('Invalid email or password. Please try again.');
+            }
         });
     };
 
@@ -487,7 +585,8 @@ const ESAM = (() => {
         // Core functionality
         initMobileMenu();
         handleModals();
-        initSignupForm();  // Initialize signup form
+        initSignupForm();
+        initLoginForm();
         initTestimonials();
         initFormValidation();
         initSmoothScrolling();
@@ -500,6 +599,9 @@ const ESAM = (() => {
         if (document.querySelector('.map-section')) {
             initMapOnView();
         }
+
+        // Update auth UI
+        updateAuthUI();
 
         // Cleanup on window close
         window.addEventListener('beforeunload', () => {

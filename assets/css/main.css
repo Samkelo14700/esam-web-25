@@ -104,6 +104,7 @@ header {
 .navbar-auth {
     display: flex;
     gap: 1rem;
+    align-items: center;
 }
 
 .auth-link {
@@ -1726,33 +1727,6 @@ button[type="submit"]:hover {
     color: var(--primary-blue);
 }
 
-/* Add to main.css */
-/* ===== Signup Modal Styles ===== */
-.signup-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 2000;
-    overflow: auto;
-    padding: 20px;
-}
-
-.modal-content {
-    background: rgb(65, 116, 255);
-    max-height: 90vh;
-    max-width: 1000px;
-    margin: 5% auto;
-    border-radius: 10px;
-    overflow: hidden;
-    overflow-y: auto;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
 /* Add this new class for scrollable content */
 .modal-scrollable {
     max-height: 60vh; /* Adjust based on your needs */
@@ -2117,4 +2091,206 @@ button[type="submit"]:hover {
 #username-display {
     font-weight: 600;
     color: var(--accent);
+}
+
+/* ===== AUTHENTICATION STYLES ===== */
+.navbar-auth {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+#authLinks, #userLinks {
+    display: flex;
+    gap: 1rem;
+}
+
+#userLinks {
+    align-items: center;
+}
+
+.logout-btn {
+    background: var(--accent-red);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.logout-btn:hover {
+    background: #a50e1e;
+}
+
+/* Modal Styles */
+.signup-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    overflow: auto;
+    padding: 20px;
+}
+
+.modal-content {
+    background: white;
+    max-height: 90vh;
+    max-width: 800px;
+    margin: 5% auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    background: var(--primary-blue);
+    padding: 1.5rem;
+    text-align: center;
+    position: relative;
+    color: white;
+}
+
+.flag-bars {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 15px;
+}
+
+.flag-bar {
+    width: 6px;
+    height: 35px;
+}
+
+.bar-blue { background: var(--primary-blue); }
+.bar-gold { background: var(--accent-gold); }
+.bar-red { background: var(--accent-red); }
+.bar-black { background: var(--eswatini-black); }
+
+.modal-body {
+    padding: 2rem;
+}
+
+.error-message {
+    background: #ffebee;
+    color: #b71c1c;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    display: none;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--primary-blue);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary-blue);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 51, 160, 0.1);
+}
+
+.terms-group {
+    display: flex;
+    align-items: flex-start;
+    margin: 2rem 0;
+}
+
+.terms-group input {
+    margin-top: 5px;
+}
+
+.terms-group label {
+    margin-left: 10px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.terms-group a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.terms-group a:hover {
+    text-decoration: underline;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.submit-btn:hover {
+    background: var(--dark-bg);
+}
+
+.submit-btn.loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 1rem;
+}
+
+.login-link a {
+    color: var(--primary-blue);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    background: none;
+    border: none;
 }
