@@ -4,9 +4,14 @@ const ESAM = (() => {
     let carouselInterval;
     let currentModal = null;
     
+    // Add CryptoJS for password hashing
+    const CryptoJS = window.CryptoJS; // Add this line
+
     // ===== USER AUTHENTICATION =====
     const USERS_KEY = 'esam_users';
     const CURRENT_USER_KEY = 'esam_current_user';
+    const SESSION_KEY = 'esam_session'; // Add session key
+    const SESSION_EXPIRY = 30 * 60 * 1000; // 30 minutes - Add this line
 
     // Get stored users
     const getUsers = () => {
@@ -16,6 +21,9 @@ const ESAM = (() => {
 
     // Save user to storage
     const saveUser = (user) => {
+        // Add password hashing
+        user.password = CryptoJS.SHA256(user.password).toString();
+
         const users = getUsers();
         users.push(user);
         localStorage.setItem(USERS_KEY, JSON.stringify(users));
@@ -23,24 +31,43 @@ const ESAM = (() => {
 
     // Authenticate user
     const authenticateUser = (email, password) => {
-        const users = getUsers();
-        return users.find(user => user.email === email && user.password === password);
+        const users = getUsers();    
+        const hashedPassword = CryptoJS.SHA256(password).toString();
+
+        return users.find(user => 
+            user.email.toLowerCase() === email.toLowerCase() && 
+            user.password === password
+        );
     };
 
     // Set current user
     const setCurrentUser = (user) => {
-        localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user));
+        // Add session management
+        const sessionData = {
+            user,
+            expiry: Date.now() + SESSION_EXPIRY
+        };
+        localStorage.setItem(SESSION_KEY, JSON.stringify(sessionData));
     };
 
     // Get current user
     const getCurrentUser = () => {
-        const user = localStorage.getItem(CURRENT_USER_KEY);
-        return user ? JSON.parse(user) : null;
+        // Add session expiration check
+        const session = localStorage.getItem(SESSION_KEY);
+        if (!session) return null;
+        
+        const sessionData = JSON.parse(session);
+        if (Date.now() > sessionData.expiry) {
+            logoutUser();
+            return null;
+        }
+        return sessionData.user;
     };
 
     // Logout user
     const logoutUser = () => {
-        localStorage.removeItem(CURRENT_USER_KEY);
+        // Update to clear session
+        localStorage.removeItem(SESSION_KEY);
     };
 
     // Update authentication UI
@@ -215,11 +242,10 @@ const ESAM = (() => {
             e.preventDefault();
             const email = this.email.value;
             const password = this.password.value;
-
+            
             const user = authenticateUser(email, password);
             if (user) {
-                // Update last login
-                user.lastLogin = new Date().toISOString();
+                // Add sesssion renewal
                 setCurrentUser(user);
                 updateAuthUI();
                 toggleForm('login');
@@ -228,6 +254,15 @@ const ESAM = (() => {
                 alert('Invalid email or password. Please try again.');
             }
         });
+    };
+
+    // Add this new function for session checking
+    const checkSession = () => {
+        const user = getCurrentUser();
+        if (!user && window.location.pathname.includes('dashboard.html')) {
+            window.location.href = 'index.html';
+        }
+        return user;
     };
 
     // ===== TESTIMONIAL CAROUSEL =====
@@ -582,6 +617,15 @@ const ESAM = (() => {
 
     // ===== INITIALIZATION =====
     const init = () => {
+        // Add session check
+        const user = checkSession();
+        if (!user) {
+            // Redirect to login if session expired
+            if (!window.location.href.includes('index.html')) {
+                window.location.href = 'index.html';
+            }
+        }
+
         // Core functionality
         initMobileMenu();
         handleModals();

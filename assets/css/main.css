@@ -2133,3 +2133,28 @@ button[type="submit"]:hover {
 .logout-btn:hover {
     background: #a50e1e;
 }
+
+/* ===== DASHBOARD RESPONSIVE STYLES ===== */
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .member-actions {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .user-info p {
+    flex-direction: column;
+  }
+  
+  .user-info strong {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+}
