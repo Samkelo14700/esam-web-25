@@ -11,6 +11,11 @@ if (typeof ESAM === 'undefined'){
         const SESSION_KEY = 'esam_session'; // Add session key
         const SESSION_EXPIRY = 30 * 60 * 1000; // 30 minutes - Add this line
 
+        // Get all users (public)
+        const getAllUsers = () => {
+            return JSON.parse(localStorage.getItem(USERS_KEY)) || [];
+        };
+
         // Get stored users
         const getUsers = () => {
             const users = localStorage.getItem(USERS_KEY);
@@ -871,6 +876,8 @@ if (typeof ESAM === 'undefined'){
             
             // 2. Clear current session
             logoutUser();
+            localStorage.removeItem(`user_settings_${userId}`);
+            localStorage.removeItem(`user_resources_${userId}`);
             
             // 3. Remove user-specific data
             deleteUserMarketplaceItems(userId);
@@ -1000,7 +1007,8 @@ if (typeof ESAM === 'undefined'){
         };
         return {
             init,
-            deleteUserAccount
+            deleteUserAccount,
+            getAllUsers
         };
     })();
 }
