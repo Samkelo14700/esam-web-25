@@ -276,7 +276,7 @@
         <section class="blog" id="blog">
             <h2>Cultural Exchange</h2>
             <div class="blog-grid">
-                <article class="blog-post">
+                <article class="blog-post" data-id="blog1">
                     <img src="assets/images/blog/morocco-culture.jpg" alt="Eid celebration comparison">
                     <div class="blog-content">
                         <h3>Celebrating Culture Day in Morocco</h3>
@@ -288,34 +288,101 @@
             </div>
         </section>
 
-        <!-- Interactive Map -->
-        <section class="map-section" id="map">
-            <h2>Our Global Network</h2>
-            <div class="map-container">
-                <div class="map-loader">
-                    <div class="loader-spinner"></div>
-                    <p>Loading world map...</p>
-                </div>
-                <svg viewBox="0 0 2000 1000" id="esam-map" style="display: none;">
-                    <!-- MOROCCO -->
-                    <path id="morocco" class="country" d="M974.8 276l1.9 4.1 0.3 3.9 1.9 6.8 1.4 1.4-1 2.5-7.1 1.1-2.5 2.3-3.1 0.6-0.3 4.8-6.4 2.5-2.1 3.2-4.5 1.7-5.4 1-8.9 4.8-0.1 7.6-0.9 0 0.1 3.4-3.4 0.2-1.8 1.5-2.5 0-2-0.9-4.6 0.7-1.9 5-1.8 0.5-2.7 8.1-7.9 6.9-2 8.9-2.4 2.9-0.7 2.3-12.5 0.5-0.1 0 0.3-3 2.2-1.7 1.9-3.4-0.3-2.2 2-4.5 3.2-4.1 1.9-1 1.6-3.7 0.2-3.5 2.1-3.9 3.8-2.4 3.6-6.5 0.1-0.1 2.9-2.5 5.1-0.7 4.4-4.4 2.8-1.7 4.7-5.4-1.2-7.9 2.2-5.6 0.9-3.4 3.6-4.3 5.4-2.9 4.1-2.7 3.7-6.6 1.8-4 3.9 0.1 3.1 2.7 5.1-0.4 5.5 1.4 2.4 0z" name="Morocco"/>
-                    <!-- ESWATINI -->
-                    <path id="eswatini" class="country" d="M1161.7 667.7l0.6 2.9 0.3 2.9-1.4 2.8-3.2 0.7-3.1-3.5 0.1-2.2 1.7-2.4 0.6-1.9 1.7-0.4 2.7 1.1z" name="Eswatini"/>
-                    <!-- Connection line -->
-                    <path class="connection" d="M500,400 C800,300 1200,600 1500,800"/>
-                    <!-- Member markers -->
-                    <circle class="member" cx="550" cy="450" r="5" data-count="35"/>
-                    <circle class="member" cx="1520" cy="820" r="5" data-count="28"/>
-                </svg>
-
-                <div class="map-legend">
-                    <div class="legend-item">
-                        <span class="dot eswatini"></span>
-                        <span>Eswatini Members</span>
+        <!-- MarketPlace -->
+        <section class="marketplace-section" id="marketplace">
+            <h2>Marketplace</h2>
+            <p class="section-description">Buy and sell items within the ESAM community</p>
+            
+            <!-- Form for adding a new item -->
+            <div class="marketplace-form">
+                <h3>Sell an Item</h3>
+                <form id="itemForm" action="https://formspree.io/f/mdovqgqz" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="_subject" value="Marketplace Item Submission">
+                    <input type="hidden" name="_next" value="https://samkelo14700.github.io/success.html">
+                    <input type="text" name="_gotcha" style="display:none">
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="itemName">Product Name *</label>
+                            <input type="text" id="itemName" name="itemName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="itemPrice">Price (MAD) *</label>
+                            <input type="number" id="itemPrice" name="itemPrice" min="0" step="0.01" required>
+                        </div>
                     </div>
-                    <div class="legend-item">
-                        <span class="dot morocco"></span>
-                        <span>Morocco Members</span>
+                    
+                    <div class="form-group">
+                        <label for="itemDescription">Description *</label>
+                        <textarea id="itemDescription" name="itemDescription" rows="4" required></textarea>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="itemCategory">Category *</label>
+                            <select id="itemCategory" name="itemCategory" required>
+                                <option value="">Select category</option>
+                                <option value="Books">Books</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Furniture">Furniture</option>
+                                <option value="Clothing">Clothing</option>
+                                <option value="Services">Services</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="itemCondition">Condition *</label>
+                            <select id="itemCondition" name="itemCondition" required>
+                                <option value="">Select condition</option>
+                                <option value="New">New</option>
+                                <option value="Like New">Like New</option>
+                                <option value="Used">Used</option>
+                                <option value="Fair">Fair</option>
+                                <option value="Poor">Poor</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="itemContact">Contact Information *</label>
+                        <input type="text" id="itemContact" name="itemContact" placeholder="Email or phone number" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="itemPhotos">Upload Photos (Max 3) *</label>
+                        <input type="file" id="itemPhotos" name="itemPhotos" accept="image/*" multiple required>
+                    </div>
+                    
+                    <div class="g-recaptcha" data-sitekey="6LdBnFErAAAAAHrPyOMJF8o7cTeRWBtyqTLXfnnj"></div>
+                    <button type="submit" class="cta-button">List Item</button>
+                </form>
+            </div>
+            
+            <!-- Marketplace items grid -->
+            <div class="marketplace-items">
+                <h3>Items for Sale</h3>
+                <div class="items-grid">
+                    <!-- Sample item (static for now) -->
+                    <div class="marketplace-item">
+                        <img src="assets/images/marketplace/textbook.jpg" alt="Calculus Textbook">
+                        <div class="item-info">
+                            <h4>Calculus Textbook</h4>
+                            <p class="item-price">80 MAD</p>
+                            <p class="item-condition">Like New</p>
+                            <p class="item-contact">Contact: john@esam.edu</p>
+                        </div>
+                    </div>
+                    
+                    <div class="marketplace-item">
+                        <img src="assets/images/marketplace/laptop.jpg" alt="Used Laptop">
+                        <div class="item-info">
+                            <h4>Used Laptop</h4>
+                            <p class="item-price">1200 MAD</p>
+                            <p class="item-condition">Used - Good</p>
+                            <p class="item-contact">Contact: +212 612-345678</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -479,7 +546,7 @@
                         
                         <div class="form-group">
                             <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="signup-email" name="email" required>
                         </div>
                         
                         <div class="form-grid">
@@ -576,11 +643,11 @@
             <form id="loginForm">
                 <div class="form-group">
                     <label>Email:</label>
-                    <input type="email" name="email" required>
+                    <input type="email" name="email" id="login-email" required>
                 </div>
                 <div class="form-group">
                     <label>Password:</label>
-                    <input type="password" name="password" required>
+                    <input type="password" name="password" id="login-password" required>
                 </div>
                 <button type="submit">Login</button>
             </form>

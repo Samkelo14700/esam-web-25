@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ESAM Ministries - Member Dashboard</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="assets/js/app.js"></script>
     <style>
         /* ===== DASHBOARD STYLES ===== */
         :root {
@@ -411,7 +415,14 @@
                             <option value="Al Akhawayn University, Ifrane">Al Akhawayn University, Ifrane</option>
                             <option value="Cadi Ayyad University, Marrakech">Cadi Ayyad University, Marrakech</option>
                             <option value="University Hassan II, Casablanca">University Hassan II, Casablanca</option>
-                            <option value="Mohammed V University, Rabat" selected>Mohammed V University, Rabat</option>
+                            <option value="University Hassan II, Mohammedia">University Hassan II, Mohammedia</option>
+                            <option value="Ibn Tofail University, Kenitra">Ibn Tofail University, Kenitra</option>
+                            <option value="Ibn Zohr University, Agadir">Ibn Zohr University, Agadir</option>
+                            <option value="Karaouiyine University, Fez">Karaouiyine University, Fez</option>
+                            <option value="Mohammed V University, Rabat">Mohammed V University, Rabat</option>
+                            <option value="Moulay Ismail University, Meknes">Moulay Ismail University, Meknes</option>
+                            <option value="Mohammed I University, Oujda">Mohammed I University, Oujda</option>
+                            <option value="Sidi Mohammed Ben Abdallah University, Fez">Sidi Mohammed Ben Abdallah University, Fez</option>
                             <option value="Other">Other</option>
                         </select>
                     </div>
@@ -423,9 +434,13 @@
                             <option value="Architecture & Urbanization">Architecture & Urbanization</option>
                             <option value="Arts & Humanities">Arts & Humanities</option>
                             <option value="Business & Economics">Business & Economics</option>
-                            <option value="Computer Science & IT" selected>Computer Science & IT</option>
+                            <option value="Computer Science & IT">Computer Science & IT</option>
                             <option value="Engineering & Technology">Engineering & Technology</option>
+                            <option value="Law">Law</option>
+                            <option value="Literature">Literature</option>
                             <option value="Medicine & Health Sciences">Medicine & Health Sciences</option>
+                            <option value="Natural Sciences">Natural Sciences</option>
+                            <option value="Social Sciences">Social Sciences</option>
                             <option value="Other">Other</option>
                         </select>
                     </div>
@@ -555,25 +570,140 @@
                 </div>
             </div>
             
+            <!-- Account settings card in dashboard.html -->
             <div class="dashboard-card">
                 <h3 class="card-title"><i class="fas fa-cog"></i> Account Settings</h3>
                 <div class="member-actions" style="flex-direction: column; gap: 10px;">
-                    <button class="btn btn-outline">
+                    <button id="change-password-btn" class="btn btn-outline">
                         <i class="fas fa-lock"></i> Change Password
                     </button>
-                    <button class="btn btn-outline">
+                    <button id="notification-btn" class="btn btn-outline">
                         <i class="fas fa-bell"></i> Notification Settings
                     </button>
-                    <button class="btn btn-outline">
-                        <i class="fas fa-file-invoice"></i> Download Documents
+                    <button id="download-resources-btn" class="btn btn-outline">
+                        <i class="fas fa-file-download"></i> Download My Resources
                     </button>
-                    <button id="dashboard-logout-btn" class="btn btn-danger">
+                    <button id="dashboard-logout-btn" class="btn btn-outline">
                         <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                    <button id="delete-account-btn" class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i> Delete Account
                     </button>
                 </div>
             </div>
         </div>
     </section>
+    <!-- Add to dashboard.html before closing body tag -->
+    <div id="passwordModal" class="dashboard-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Change Password</h3>
+            <form id="passwordForm">
+                <div class="form-group">
+                    <label for="currentPassword">Current Password</label>
+                    <div class="password-input">
+                        <input type="password" id="currentPassword" required>
+                        <i class="fas fa-eye toggle-password"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    <div class="password-input">
+                        <input type="password" id="newPassword" required>
+                        <i class="fas fa-eye toggle-password"></i>
+                    </div>
+                    <div class="password-strength">
+                        <span class="strength-bar"></span>
+                        <span class="strength-bar"></span>
+                        <span class="strength-bar"></span>
+                        <span class="strength-text"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="password-input">
+                        <input type="password" id="confirmPassword" required>
+                        <i class="fas fa-eye toggle-password"></i>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Update Password</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="notificationsModal" class="dashboard-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Notification Preferences</h3>
+            <form id="notificationsForm">
+                <div class="form-group">
+                    <label class="switch">
+                        <input type="checkbox" id="eventNotifications" checked>
+                        <span class="slider"></span>
+                    </label>
+                    <span>Event Announcements</span>
+                </div>
+                <div class="form-group">
+                    <label class="switch">
+                        <input type="checkbox" id="resourceNotifications" checked>
+                        <span class="slider"></span>
+                    </label>
+                    <span>New Resources</span>
+                </div>
+                <div class="form-group">
+                    <label class="switch">
+                        <input type="checkbox" id="marketplaceNotifications">
+                        <span class="slider"></span>
+                    </label>
+                    <span>Marketplace Updates</span>
+                </div>
+                <div class="form-group">
+                    <label class="switch">
+                        <input type="checkbox" id="emailNotifications" checked>
+                        <span class="slider"></span>
+                    </label>
+                    <span>Email Summaries</span>
+                </div>
+                <div class="form-group">
+                    <label>Notification Frequency</label>
+                    <select id="notificationFrequency">
+                        <option value="immediate">Immediately</option>
+                        <option value="daily" selected>Daily Digest</option>
+                        <option value="weekly">Weekly Digest</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Preferences</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="deleteModal" class="dashboard-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Delete Account</h3>
+            <div class="warning-box">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>This action is permanent and cannot be undone. All your data will be permanently deleted.</p>
+            </div>
+            <form id="deleteForm">
+                <div class="form-group">
+                    <label for="deletePassword">Enter Password to Confirm</label>
+                    <input type="password" id="deletePassword" required>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="confirmDelete" required>
+                        <span class="checkmark"></span>
+                        I understand that this action cannot be undone
+                    </label>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline cancel-delete">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Delete Account Permanently</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <footer class="site-footer">
         <div class="footer-content">
@@ -608,9 +738,7 @@
         </div>
     </footer>
 
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    
+   
     <script>
         // Dashboard script
         document.addEventListener('DOMContentLoaded', () => {
@@ -728,7 +856,224 @@
                 alert('You have been logged out successfully');
                 window.location.href = 'index.html';
             });
+
+            // Password change functionality
+            const passwordForm = document.getElementById('passwordForm');
+            if (passwordForm) {
+                passwordForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const currentPassword = document.getElementById('currentPassword').value;
+                    const newPassword = document.getElementById('newPassword').value;
+                    const confirmPassword = document.getElementById('confirmPassword').value;
+                    
+                    // Simulate password change
+                    setTimeout(() => {
+                        alert('Password changed successfully!');
+                        document.getElementById('passwordModal').style.display = 'none';
+                        this.reset();
+                    }, 1000);
+                });
+            }
+            
+            // Notification preferences
+            const notificationsForm = document.getElementById('notificationsForm');
+            if (notificationsForm) {
+                // Load saved preferences
+                const prefs = JSON.parse(localStorage.getItem('notificationPrefs')) || {};
+                if (prefs) {
+                    if (prefs.events !== undefined) document.getElementById('eventNotifications').checked = prefs.events;
+                    if (prefs.resources !== undefined) document.getElementById('resourceNotifications').checked = prefs.resources;
+                    if (prefs.marketplace !== undefined) document.getElementById('marketplaceNotifications').checked = prefs.marketplace;
+                    if (prefs.email !== undefined) document.getElementById('emailNotifications').checked = prefs.email;
+                    if (prefs.frequency) document.getElementById('notificationFrequency').value = prefs.frequency;
+                }
+                
+                notificationsForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const prefs = {
+                        events: document.getElementById('eventNotifications').checked,
+                        resources: document.getElementById('resourceNotifications').checked,
+                        marketplace: document.getElementById('marketplaceNotifications').checked,
+                        email: document.getElementById('emailNotifications').checked,
+                        frequency: document.getElementById('notificationFrequency').value
+                    };
+                    
+                    localStorage.setItem('notificationPrefs', JSON.stringify(prefs));
+                    alert('Notification preferences saved!');
+                    document.getElementById('notificationsModal').style.display = 'none';
+                });
+            }
+            
+            // Add password verification helper
+            const verifyPassword = (password, user) => {
+                const hashedPassword = CryptoJS.SHA256(password).toString();
+                return hashedPassword === user.password;
+            };         
+
+            // Account deletion
+            const deleteForm = document.getElementById('deleteForm');
+            if (deleteForm) {
+                deleteForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const password = document.getElementById('deletePassword').value;
+                    if (!password) {
+                        alert('Please enter your password');
+                        return;
+                    }
+
+                    const session = localStorage.getItem('esam_session');
+                    if (!session) {
+                        alert('Session expired. Please log in again.');
+                        return;
+                    }
+                    
+                    const sessionData = JSON.parse(session);
+                    const userId = sessionData.user.id;
+                    const users = JSON.parse(localStorage.getItem('esam_users')) || [];
+                    const user = users.find(u => u.id === userId);
+                    
+                    if (!user) {
+                        alert('User not found');
+                        return;
+                    }
+
+                    // Verify password
+                    const hashedPassword = CryptoJS.SHA256(password).toString();
+                    if (hashedPassword !== user.password) {
+                        alert('Incorrect password');
+                        return;
+                    }
+
+                    // Permanently delete user
+                   ESAM.deleteUserAccount(userId);
+                    
+                    alert('Account permanently deleted');
+                    window.location.href = 'index.html';
+                });
+            }
+
+            // Add this helper function to dashboard.html script
+            const getCurrentUser = () => {
+                const session = localStorage.getItem('esam_session');
+                if (!session) return null;
+                try {
+                    const sessionData = JSON.parse(session);
+                    
+                    // Check if session expired
+                    if (Date.now() > sessionData.expiry) {
+                        localStorage.removeItem('esam_session');
+                        return null;
+                    }
+                    
+                    return sessionData.user;
+                } catch (e) {
+                    console.error('Error parsing session data:', e);
+                    return null;
+                }
+            };
+            
+            // Toggle password visibility
+            document.querySelectorAll('.toggle-password').forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const input = this.previousElementSibling;
+                    const type = input.type === 'password' ? 'text' : 'password';
+                    input.type = type;
+                    this.classList.toggle('fa-eye');
+                    this.classList.toggle('fa-eye-slash');
+                });
+            });
+            
+            // Password strength meter
+            const newPasswordInput = document.getElementById('newPassword');
+            if (newPasswordInput) {
+                newPasswordInput.addEventListener('input', function() {
+                    const password = this.value;
+                    const bars = document.querySelectorAll('.strength-bar');
+                    const text = document.querySelector('.strength-text');
+                    
+                    // Reset
+                    bars.forEach(bar => bar.style.background = '#ddd');
+                    text.textContent = '';
+                    
+                    if (password.length === 0) return;
+                    
+                    // Calculate strength
+                    let strength = 0;
+                    if (password.length > 7) strength++;
+                    if (/[A-Z]/.test(password)) strength++;
+                    if (/[0-9]/.test(password)) strength++;
+                    if (/[^A-Za-z0-9]/.test(password)) strength++;
+                    
+                    // Update UI
+                    for (let i = 0; i < strength; i++) {
+                        if (i === 0) bars[i].style.background = '#e74c3c';
+                        if (i === 1) bars[i].style.background = '#f39c12';
+                        if (i === 2) bars[i].style.background = '#3498db';
+                        if (i === 3) bars[i].style.background = '#2ecc71';
+                    }
+                    
+                    // Update text
+                    const messages = ['Very Weak', 'Weak', 'Medium', 'Strong'];
+                    const colors = ['#e74c3c', '#f39c12', '#3498db', '#2ecc71'];
+                    text.textContent = messages[strength - 1] || '';
+                    text.style.color = colors[strength - 1] || '';
+                });
+            }
+            
+            // Modal toggling
+            document.querySelectorAll('.close-modal, .cancel-delete').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.dashboard-modal').forEach(modal => {
+                        modal.style.display = 'none';
+                    });
+                });
+            });
+            
+            // Open modals
+            document.getElementById('change-password-btn').addEventListener('click', () => {
+                document.getElementById('passwordModal').style.display = 'block';
+            });
+            
+            document.getElementById('notification-btn').addEventListener('click', () => {
+                document.getElementById('notificationsModal').style.display = 'block';
+            });
+            
+            document.getElementById('delete-account-btn').addEventListener('click', () => {
+                document.getElementById('deleteModal').style.display = 'block';
+            });
+            
+            // Download resources
+            document.getElementById('download-resources-btn').addEventListener('click', () => {
+                // Simulate downloading
+                const btn = this;
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing Download...';
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    alert('Your resources have been packaged and downloaded!');
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }, 2000);
+            });
         });
+
+        
+        const renewSession = () => {
+            const session = localStorage.getItem('esam_session');
+            if (session) {
+                const sessionData = JSON.parse(session);
+                sessionData.expiry = Date.now() + 30 * 60 * 1000; // 30 mins
+                localStorage.setItem('esam_session', JSON.stringify(sessionData));
+            }
+        };
+
+        // Renew on page load and every 5 minutes
+        renewSession();
+        setInterval(renewSession, 5 * 60 * 1000);
     </script>
     <script>
     // Add session check to dashboard
@@ -736,6 +1081,7 @@
         // Check session
         const session = localStorage.getItem('esam_session');
         if (!session) {
+            alert('Session expired. Please login again.');
             window.location.href = 'index.html';
             return;
         }
@@ -743,6 +1089,7 @@
         const sessionData = JSON.parse(session);
         if (Date.now() > sessionData.expiry) {
             localStorage.removeItem('esam_session');
+            alert('Session expired. Please login again.');
             window.location.href = 'index.html';
             return;
         }
@@ -760,5 +1107,6 @@
         });
     });
     </script>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
