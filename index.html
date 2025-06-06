@@ -149,17 +149,57 @@
             <h2>Upcoming Events</h2>
             <div class="event-grid">
                 <div class="event-card">
-                    <img src="assets/images/events/event1.jpg" alt="ESAM Cultural Night Event">
-                    <h3>Cultural Night</h3>
-                    <p>June 15, 2025 | Rabat</p>
-                    <button class="rsvp-btn">RSVP</button>
+                    <div class="event-image">
+                        <img src="assets/images/events/event1.jpg" alt="ESAM Cultural Night Event">
+                        <div class="event-date">JUN 15, 2025</div>
+                    </div>
+                    <div class="event-content">
+                        <h3>Cultural Night</h3>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Rabat, Morocco</span>
+                        </div>
+                        <p class="event-description">Experience the rich cultural heritage of Eswatini through music, dance, and traditional cuisine.</p>
+                        <button class="rsvp-btn" onclick="window.rsvpEvent(this, 'Cultural Night')">
+                            <i class="fas fa-calendar-check"></i> RSVP Now
+                        </button>
+                    </div>
                 </div>
-        
+                
                 <div class="event-card">
-                    <img src="assets/images/events/event2.jpg" alt="ESAM Study Workshop">
-                    <h3>Study Workshop</h3>
-                    <p>July 3, 2025 | Casablanca</p>
-                    <button class="rsvp-btn">RSVP</button>
+                    <div class="event-image">
+                        <img src="assets/images/events/event2.jpg" alt="ESAM Study Workshop">
+                        <div class="event-date">JUL 3, 2025</div>
+                    </div>
+                    <div class="event-content">
+                        <h3>Study Workshop</h3>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Casablanca, Morocco</span>
+                        </div>
+                        <p class="event-description">Improve your study techniques with our expert-led workshop on effective note-taking and time management.</p>
+                        <button class="rsvp-btn" onclick="window.rsvpEvent(this, 'Study Workshop')">
+                            <i class="fas fa-calendar-check"></i> RSVP Now
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="assets/images/events/graduation.jpg" alt="ESAM Graduation Ceremony">
+                        <div class="event-date">AUG 20, 2025</div>
+                    </div>
+                    <div class="event-content">
+                        <h3>Graduation Ceremony</h3>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Rabat, Morocco</span>
+                        </div>
+                        <p class="event-description">Celebrate the achievements of our graduating students with this special ceremony.</p>
+                        <button class="rsvp-btn" onclick="window.rsvpEvent(this, 'Graduation Ceremony')">
+                            <i class="fas fa-calendar-check"></i> RSVP Now
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>

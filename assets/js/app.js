@@ -166,6 +166,30 @@ if (typeof ESAM === 'undefined'){
             });
         };
 
+        // ===== GLOBAL FUNCTIONS =====
+        window.rsvpEvent = function(button, eventName) {
+            if (button.classList.contains('confirmed')) {
+                button.classList.remove('confirmed');
+                button.innerHTML = '<i class="fas fa-calendar-check"></i> RSVP Now';
+                alert(`You've canceled your RSVP for: ${eventName}`);
+            } else {
+                button.classList.add('confirmed');
+                button.innerHTML = '<i class="fas fa-check"></i> Confirmed!';
+                alert(`Thank you for RSVPing to: ${eventName}`);
+                
+                // Log the RSVP in localStorage
+                const userId = ESAM.getCurrentUser()?.id;
+                if(userId) {
+                    const rsvps = JSON.parse(localStorage.getItem('esam_rsvps') || '{}');
+                    rsvps[eventName] = rsvps[eventName] || [];
+                    if(!rsvps[eventName].includes(userId)) {
+                        rsvps[eventName].push(userId);
+                        localStorage.setItem('esam_rsvps', JSON.stringify(rsvps));
+                    }
+                }
+            }
+        };
+
         // ===== SIGNUP FORM HANDLING =====
         const initSignupForm = () => {
             const signupForm = document.getElementById('signupForm');
@@ -424,7 +448,7 @@ if (typeof ESAM === 'undefined'){
                 loadComments();
             });
         };
-
+ 
         // ===== ALUMNI DATA HANDLING =====
         const initAlumni = () => {
             const alumniData = {
@@ -1008,6 +1032,7 @@ if (typeof ESAM === 'undefined'){
         return {
             init,
             deleteUserAccount,
+            getCurrentUser,
             getAllUsers
         };
     })();

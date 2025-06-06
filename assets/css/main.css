@@ -496,6 +496,56 @@ hero {
     border-top: 4px solid var(--primary-blue);
 }
 
+.event-image {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.event-date {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--accent);
+    color: var(--primary);
+    padding: 8px 15px;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.event-content {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-title {
+    font-size: 1.4rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.event-location {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.event-location i {
+    margin-right: 8px;
+    color: var(--accent-red);
+}
+
+.event-description {
+    margin-bottom: 20px;
+    color: #555;
+    flex-grow: 1;
+}
+
 /* Event-card accent flag */
 .event-card::after {
     content: "";
@@ -534,6 +584,7 @@ hero {
     padding: 1.5rem;
 }
 
+/* RSVP Button */
 .rsvp-btn {
     display: block;
     width: 100%;
@@ -541,6 +592,7 @@ hero {
     background: var(--primary-blue);
     color: rgb(255, 217, 0);
     border: none;
+    border-radius: var(--border-radius);
     cursor: pointer;
     font-weight: bold;
     transition: background 0.3s;
@@ -550,6 +602,39 @@ hero {
 
 .rsvp-btn:hover {
     background: var(--eswatini-black);
+    transform: translateY(-2px);
+}
+
+.rsvp-btn.confirmed {
+    background: var(--accent);
+    color: var(--primary);
+}
+
+.rsvp-btn.confirmed:hover {
+    background: #e6c200;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .event-grid {
+        gap: 20px;
+    }
+    
+    .event-content {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .event-card {
+        max-width: 350px;
+        margin: 0 auto;
+    }
+    
+    .rsvp-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
 }
 
 /* ===== Membership Section ===== */
@@ -733,6 +818,12 @@ hero {
     font-weight: bold;
 }
 
+
+@media (max-width: 480px) {
+    .resource-grid {
+        grid-template-columns: 1fr;
+    }
+}
 /* ===== Gallery Section ===== */
 .gallery {
     background-color: var(--eswatini-blue);
@@ -771,6 +862,20 @@ hero {
     transform: scale(1.05);
 }
 
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-auto-rows: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 120px;
+    }
+}
 /* ===== Gallery Enhancements ===== */
 .gallery-lightbox {
     position: fixed;
@@ -917,13 +1022,19 @@ hero {
 }
 
 .testimonial-carousel {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: 20px;
+    scroll-snap-type: x mandatory;
+    padding: 10px 0;
     max-width: var(--container-width);
     margin: 0 auto;
 }
 
+
+.testimonial-carousel::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari */
+}
 .testimonial {
     background: rgb(132, 164, 252);
     padding: 2rem;
@@ -967,6 +1078,12 @@ hero {
     border-color: var(--accent-gold);
 }
 
+
+@media (max-width: 768px) {
+    .testimonial {
+        min-width: 250px;
+    }
+}
 /* ===== Spotlight Section ===== */
 .spotlight-form {
     background: rgb(132, 164, 252);
