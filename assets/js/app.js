@@ -352,6 +352,55 @@ if (typeof ESAM === 'undefined'){
             startCarousel();
         };
 
+        const initVideoTestimonials = () => {
+            const videos = document.querySelectorAll('.video-testimonial video');
+                
+            videos.forEach(video => {
+                video.addEventListener('play', function() {
+                    if(!document.fullscreenElement) {
+                        this.style.objectFit = 'contain';
+                        this.style.backgroundColor = '#000';
+                    }
+                });
+                    
+                video.addEventListener('fullscreenchange', function() {
+                    if(!document.fullscreenElement) {
+                        this.style.objectFit = 'cover';
+                        this.style.backgroundColor = 'transparent';
+                    }
+                });
+            });
+        
+                
+            // Membership card hover effect enhancement
+            const benefitCards = document.querySelectorAll('.benefit-card');
+            
+            benefitCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.zIndex = '10';
+                });
+                    
+                card.addEventListener('mouseleave', function() {
+                    this.style.zIndex = '1';
+                });
+            });
+        };
+        // ===== BENEFIT CARD EFFECTS =====
+        const initBenefitCards = () => {
+            const benefitCards = document.querySelectorAll('.benefit-card');
+            
+            benefitCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.zIndex = '10';
+                });
+                    
+                card.addEventListener('mouseleave', function() {
+                    this.style.zIndex = '1';
+                });
+            });
+        };
+
+
         // ===== BLOG ENHANCEMENTS =====
         const initBlog = () => {
             const blogGrid = document.querySelector('.blog-grid');
@@ -1005,6 +1054,8 @@ if (typeof ESAM === 'undefined'){
             handleModals();
             initSignupForm();
             initLoginForm();
+            initVideoTestimonials();
+            initBenefitCards();
             initTestimonials();
             initFormValidation();
             initSmoothScrolling();

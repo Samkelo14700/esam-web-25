@@ -206,20 +206,70 @@
 
         <!-- Membership Section -->
         <section class="membership" id="membership">
-            <h2>Join Our Community</h2>
-            <div class="membership-grid">
-                <div class="membership-card">
-                    <i class="fas fa-users-crown"></i>
-                    <h3>Membership Benefits</h3>
-                    <ul>
-                        <li>Exclusive event access</li>
-                        <li>Academic resources</li>
-                        <li>Leadership opportunities</li>
-                        <li>Mentorship programs</li>
-                        <li>Cultural exchange activities</li>
-                        <li>Career development workshops</li>
-                    </ul>
-                    <button class="cta-button" onclick="toggleForm('signup')">Join Now</button>
+            <h2>ESAM Membership Benefits</h2>
+            <p class="section-subtitle">Experience exclusive benefits designed for Eswatini students in Morocco</p>
+            
+            <div class="benefits-container">
+                <div class="benefits-grid">
+                    <!-- Benefit 1 -->
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Exclusive Event Access</h3>
+                        <p>Access to all cultural nights, workshops, and networking events</p>
+                    </div>
+                    
+                    <!-- Benefit 2 -->
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Academic Resources</h3>
+                        <p>Unlimited access to all study materials and research databases</p>
+                    </div>
+                    
+                    <!-- Benefit 3 -->
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Leadership Opportunities</h3>
+                        <p>Develop skills through exclusive programs and committee positions</p>
+                    </div>
+                    
+                    <!-- Benefit 4 -->
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Mentorship Programs</h3>
+                        <p>Connect with industry leaders for personalized career guidance</p>
+                    </div>
+                    
+                    <!-- Benefit 5 -->
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-globe-africa"></i>
+                        </div>
+                        <h3>Cultural Exchange</h3>
+                        <p>Participate in cultural immersion programs and heritage celebrations</p>
+                    </div>
+                    
+                    <!-- Benefit 6 -->
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3>Career Development</h3>
+                        <p>Access to premium job boards and internship opportunities</p>
+                    </div>
+                </div>
+                
+                <div class="cta-container">
+                    <button class="cta-btn" onclick="toggleForm('signup')">
+                        Join ESAM Today <i class="fas fa-arrow-right"></i>
+                    </button>
                 </div>
             </div>
         </section>
@@ -264,28 +314,43 @@
         <!-- Testimonials Section -->
         <section class="testimonials" id="testimonials">
             <h2>Student Experiences</h2>
-            <div class="testimonial-carousel">
-                <div class="testimonial">
-                    <div class="student-photo">
-                        <img src="assets/images/students/student1.jpg" alt="Lihle Mamba">
+            <p class="section-subtitle">Hear directly from our students about their journey</p>
+            
+            <div class="testimonial-container">
+                <!-- Image Testimonials -->
+                <div class="image-testimonials">
+                    <!-- Testimonial 1 -->
+                    <div class="image-testimonial">
+                        <img src="assets/images/students/student1.jpg" 
+                            alt="Lihle Mamba" class="testimonial-image">
+                        <h3>Lihle Mamba</h3>
+                        <p class="testimonial-position">Computer Science, Rabat</p>
+                        <blockquote>
+                            "ESAM helped me navigate Moroccan visa processes smoothly. The mentorship program was life-changing!"
+                        </blockquote>
                     </div>
-                    <blockquote>
-                        "ESAM helped me navigate Moroccan visa processes smoothly. 
-                        The mentorship program was life-changing!"
-                        <cite>- Lihle Mamba, Computer Science</cite>
-                    </blockquote>
-                </div>
-        
-                <div class="testimonial">
-                    <div class="student-video">
-                        <video controls poster="assets/videos/thumbnails/student2.jpg">
-                            <source src="assets/videos/student2.mp4" type="video/mp4">
-                        </video>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="image-testimonial">
+                        <img src="assets/images/students/student3.jpg" 
+                            alt="Sipho Shongwe" class="testimonial-image">
+                        <h3>Sipho Shongwe</h3>
+                        <p class="testimonial-position">Medicine, Casablanca</p>
+                        <blockquote>
+                            "The academic resources provided by ESAM were crucial to my success in medical school."
+                        </blockquote>
                     </div>
-                    <blockquote>
-                        "Watch my journey from Lobamba to Rabat"
-                        <cite>- Sipho Shongwe, Medicine</cite>
-                    </blockquote>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="image-testimonial">
+                        <img src="assets/images/students/student4.jpg" 
+                            alt="Nomthandazo Nkosi" class="testimonial-image">
+                        <h3>Nomthandazo Nkosi</h3>
+                        <p class="testimonial-position">Business Administration, Marrakech</p>
+                        <blockquote>
+                            "The networking events helped me secure my first internship at a top Moroccan company."
+                        </blockquote>
+                    </div>
                 </div>
             </div>
         </section>
