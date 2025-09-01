@@ -123,7 +123,7 @@ header {
     transition: transform 0.3s ease;
     border-radius: 50%;
     border: 3px solid var(--accent-gold);
-    background: white;
+    background: rgba(255, 255, 255, 0.546);
     box-shadow: 0 0 15px rgba(198, 160, 32, 0.683);
 }
 
@@ -415,13 +415,14 @@ hero {
 
 .leadership-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(50px, 0.75fr));
     gap: 2rem;
-    margin-top: 3rem;
+    margin-top: 3.5rem;
+    position:relative;
 }
 
 .leadership h3{
-    color: #2b62fa;;
+    color: #2b62fa;
     text-align: center;
 }
 
@@ -735,10 +736,11 @@ section-subtitle {
 
 
 .benefit-icon {
-    font-size: 2.8rem;
-    color: var(--accent);
+    font-size: 3.5rem;
+    color: rgba(0, 0, 0, 0.5);
     margin-bottom: 20px;
     transition: transform var(--transition);
+    align-items: center;
 }
 
 .benefit-card:hover .benefit-icon {
@@ -758,6 +760,7 @@ section-subtitle {
 }
 
 .benefit-card p {
+    font-size: 0.8rem;
     color: #000000;
     margin-bottom: 20px;
     transition: color var(--transition);
@@ -1119,6 +1122,10 @@ section-subtitle {
     background: var(--gradient-blue-yellow);
 }
 
+.testimonials p {
+    text-align: center;
+    color: var(--dark-bg);    
+}
 .testimonial-container {
     display: grid;
     position: relative;
