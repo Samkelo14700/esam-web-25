@@ -340,9 +340,9 @@ hero {
 }
 
 .timeline {
-    position: relative;
-    max-width: 800px;
-    margin: 2rem auto;
+    position: flex;
+    max-width: 1400px;
+    margin: auto;
 }
 
 .timeline-item {
@@ -418,7 +418,7 @@ hero {
     grid-template-columns: repeat(auto-fit, minmax(50px, 0.75fr));
     gap: 2rem;
     margin-top: 3.5rem;
-    position:relative;
+    position:flex;
 }
 
 .leadership h3{
